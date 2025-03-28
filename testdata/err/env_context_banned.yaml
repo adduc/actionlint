@@ -18,7 +18,7 @@ jobs:
         env:
           BAR: ${{ env.FOO }}
       # This still should be OK
-      - uses: test/my-action@main
+      - uses: test/my-action@0123456789012345678901234567890123456789
         env:
           OS: ${{ runner.os }}
           NAME: ${{ runner.name }}

@@ -20,7 +20,7 @@ jobs:
     needs: [job1, job2, job3]
     runs-on: ubuntu-latest
     steps:
-      - uses: ScribeMD/slack-templates@0
+      - uses: ScribeMD/slack-templates@7e4cb7ce525cf4f29c6342375b1b0a7f8745f788 # 0.6.38
         with:
           bot-token: ${{ secrets.SLACK_TEMPLATES_BOT_TOKEN }}
           channel-id: ${{ secrets.SLACK_TEMPLATES_CHANNEL_ID }}
