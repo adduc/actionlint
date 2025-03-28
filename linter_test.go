@@ -454,8 +454,12 @@ func TestLinterFormatErrorMessageInSARIF(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
+
+	out = string(bytes)
+	out = strings.ReplaceAll(out, "{{VERSION}}", getCommandVersion())
+
 	var want interface{}
-	if err := json.Unmarshal(bytes, &want); err != nil {
+	if err := json.Unmarshal([]byte(out), &want); err != nil {
 		panic(err)
 	}
 
