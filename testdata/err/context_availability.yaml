@@ -170,13 +170,13 @@ jobs:
         # jobs.<job_id>.steps.working-directory
         # OK
         working-directory: ${{ runner.temp }}
-      - uses: owner/repo@ref
+      - uses: owner/repo@0123456789012345678901234567890123456789
         # jobs.<job_id>.steps.with
         with:
           # OK
           message: '${{ job.container.id }} is running on ${{ runner.os }}'
   caller:
-    uses: owner/repo/workflow.yml@main
+    uses: owner/repo/workflow.yml@0123456789012345678901234567890123456789
     # jobs.<job_id>.with.<with_id>
     with:
       # ERROR

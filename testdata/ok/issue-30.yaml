@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Run Azure Functions Action'
-        uses: Azure/functions-action@v1.4.0
+        uses: Azure/functions-action@fd80521afbba9a2a76a99ba1acc07aff8d733d11 # v1.5.2
         id: thing
         with:
           app-name: 'my-function-app'

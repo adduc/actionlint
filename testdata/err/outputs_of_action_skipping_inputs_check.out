@@ -1,1 +1,2 @@
+test.yaml:7:15: ref "v2.x" is not a valid commit SHA. [action]
 test.yaml:16:40: property "this_output_does_not_exist" is not defined in object type {data: string; headers: string; status: string} [expression]

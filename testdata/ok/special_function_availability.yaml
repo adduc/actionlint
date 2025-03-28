@@ -42,7 +42,7 @@ jobs:
         timeout-minutes: ${{ fromJSON(hashFiles('...')) }}
         # jobs.<job_id>.steps.working-directory
         working-directory: ${{ hashFiles('...') }}
-      - uses: owner/repo@ref
+      - uses: owner/repo@0000000000000000000000000000000000000000
         # jobs.<job_id>.steps.with
         with:
           foo: ${{ hashFiles('...') }}
