@@ -6,6 +6,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"slices"
 	"strconv"
 	"strings"
 )
@@ -371,7 +372,10 @@ func (rule *RuleAction) checkRepoAction(spec string, exec *ExecAction) {
 		rule.invalidActionFormat(exec.Uses.Pos, spec, "owner and repo and ref should not be empty")
 	}
 
-	if owner != "actions" && !checkCommitSHA(ref) {
+	// these owners are trusted that their versions are secure
+	officialOwners := []string{"actions", "github"}
+
+	if !slices.Contains(officialOwners, owner) && !checkCommitSHA(ref) {
 		rule.Errorf(exec.Uses.Pos, "ref %q is not a valid commit SHA.", ref)
 		return
 	}
