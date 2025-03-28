@@ -371,6 +371,11 @@ func (rule *RuleAction) checkRepoAction(spec string, exec *ExecAction) {
 		rule.invalidActionFormat(exec.Uses.Pos, spec, "owner and repo and ref should not be empty")
 	}
 
+	if owner != "actions" && !checkCommitSHA(ref) {
+		rule.Errorf(exec.Uses.Pos, "ref %q is not a valid commit SHA.", ref)
+		return
+	}
+
 	meta, ok := PopularActions[spec]
 	if !ok {
 		if _, ok := OutdatedPopularActionSpecs[spec]; ok {
@@ -388,6 +393,18 @@ func (rule *RuleAction) checkRepoAction(spec string, exec *ExecAction) {
 	rule.checkAction(meta, exec, func(m *ActionMetadata) string {
 		return strconv.Quote(spec)
 	})
+}
+
+func checkCommitSHA(ref string) bool {
+	if len(ref) != 40 {
+		return false
+	}
+
+	if _, err := strconv.ParseUint(ref, 16, 64); err != nil {
+		return false
+	}
+
+	return true
 }
 
 func (rule *RuleAction) invalidActionFormat(pos *Pos, spec string, why string) {
