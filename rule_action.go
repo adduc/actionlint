@@ -400,8 +400,11 @@ func checkCommitSHA(ref string) bool {
 		return false
 	}
 
-	if _, err := strconv.ParseUint(ref, 16, 64); err != nil {
-		return false
+	// check that ref is a valid hexadecimal string
+	for _, c := range ref {
+		if !((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')) {
+			return false
+		}
 	}
 
 	return true
